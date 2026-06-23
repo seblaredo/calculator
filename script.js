@@ -31,6 +31,11 @@ function operate(a, op, b){
         case '*': result = multiply(a, b); break;
         case '/': result = divide(a, b); break;
     }
+    if(result.toFixed(6) != result + ".000000" && !result.toString().includes("e")){
+        result = result.toPrecision(12);
+    } else if (result.toString().length > 12){
+        result = result.toExponential(7);
+    }
     return result;
 }
 
