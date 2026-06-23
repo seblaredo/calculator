@@ -1,6 +1,7 @@
-let a;
+let a = null;
 let oper;
 let b;
+let display = document.querySelector(".screen p");
 
 function add(a, b){
     return a + b;
@@ -29,4 +30,13 @@ function operate(a, oper, b){
         case '/': result = divide(a, b);
     }
     return result;
+}
+
+function updateNum(num){
+    if(a === null){
+        a = num;
+    } else {
+        b = num;
+    }
+    display.textContent = a;
 }
