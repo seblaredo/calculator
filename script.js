@@ -32,15 +32,25 @@ function operate(a, op, b){
         case '/': result = divide(a, b); break;
     }
     if(result.toFixed(6) != result + ".000000" && !result.toString().includes("e")){
-        result = result.toPrecision(12);
-    } else if (result.toString().length > 12){
+        result = result.toPrecision(11);
+    } else if (result.toFixed(5) === Math.floor(result) + ".00000"){
+        result = Math.floor(result);
+    }else if (result.toString().length > 11){
         result = result.toExponential(7);
+    } else if (result > 9.9999999*(10**99)){
+        result = "Overflow!";
+    }
+
+    if (Number(result).toFixed(8) === Math.trunc(Number(result)) + ".00000000" || (Math.trunc(Number(result)*1000000)/1000000).toString() === Math.trunc(Number(result)) + ".999999"){
+        result = Math.round(result);
     }
     return result;
 }
 
 function addNum(num){
-    display.textContent += num;
+    if(display.textContent.length <= 11){
+        display.textContent += num;
+    }
 }
 
 function displayNum(num){
@@ -87,10 +97,15 @@ keypad.addEventListener("click", (e)=>{
     } else if(target.classList.contains("clear")){
         allClear();
     } else if(target.classList.contains("equal")){
-        b = display.textContent;
-        display.textContent = operate(a, op, b);
-        a = display.textContent;
-        op = null;
-        lastCalled = "op";
+        if (op === null){
+            
+        }
+        else {
+            b = display.textContent;
+            display.textContent = operate(a, op, b);
+            a = display.textContent;
+            op = null;
+            lastCalled = "op";
+        }
     }
 })
