@@ -37,7 +37,9 @@ function operate(a, op, b){
         result = Math.floor(result);
     }else if (result.toString().length > 11){
         result = result.toExponential(7);
-    } else if (result > 9.9999999*(10**99)){
+    }
+    
+    if (Number(result) > 9.9999999*(10**99)){
         result = "Overflow!";
     }
 
