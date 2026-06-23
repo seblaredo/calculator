@@ -1,7 +1,8 @@
 let a = null;
 let oper;
 let b;
-let display = document.querySelector(".screen p");
+const display = document.querySelector(".screen p");
+const keypad = document.querySelector(".keypad"); 
 
 function add(a, b){
     return a + b;
@@ -40,3 +41,11 @@ function updateNum(num){
     }
     display.textContent = a;
 }
+
+keypad.addEventListener("click", (e)=>{
+    let target = e.target;
+    let number = "";
+    switch(target.id){
+        case "1": updateNum(1);
+    }
+})

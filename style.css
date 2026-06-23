@@ -51,6 +51,9 @@
 .key{
     flex-basis:24%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
 }
 
 button{
